@@ -3,6 +3,8 @@ server:
     encoding:
       charset: utf-8
       force: true
+    session:
+      timeout: 30m
   port: 8080
 
 spring:
@@ -18,10 +20,10 @@ spring:
   h2:
     console:
       enabled: true
-  #  sql:
-  #    init:
-  #      data-locations:
-  #        - classpath:db/data.sql
+  sql:
+    init:
+      data-locations:
+        - classpath:db/data.sql
   jpa:
     hibernate:
       ddl-auto: create
@@ -29,4 +31,5 @@ spring:
     properties:
       hibernate:
         format_sql: true
-#    defer-datasource-initialization: true
+        default_batch_fetch_size: 10  // lazyLoading이 안일어나고 in쿼리를 짜준다.
+    defer-datasource-initialization: true
